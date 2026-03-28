@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start the System Today | Simple Digital Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #080808; --white: #ffffff; --cream: #f7f4ef;
+    --gold: #e8b84b; --gold-light: #f5d47a; --gold-dark: #c49a2e;
+    --gray: #6b6b6b; --dark-gray: #141414; --mid-gray: #1e1e1e; --card-gray: #242424;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+
+  .topbar { background: var(--gold); color: var(--black); text-align: center; padding: 13px 20px; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; }
+
+  .hero { background: var(--black); position: relative; overflow: hidden; padding: 88px 20px 96px; text-align: center; }
+  .hero::before { content: ''; position: absolute; top: -180px; left: 50%; transform: translateX(-50%); width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(232,184,75,0.11) 0%, transparent 65%); pointer-events: none; }
+  .hero-inner { max-width: 840px; margin: 0 auto; position: relative; z-index: 2; }
+
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,184,75,0.1); border: 1px solid rgba(232,184,75,0.28); color: var(--gold); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 18px; border-radius: 100px; margin-bottom: 30px; }
+
+  h1 { font-family: 'Outfit', sans-serif; font-size: clamp(36px, 6vw, 68px); font-weight: 900; line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 24px; color: var(--white); }
+  h1 em { font-style: normal; color: var(--gold); }
+
+  .hero-sub { font-size: clamp(16px, 2.2vw, 20px); font-weight: 300; color: rgba(255,255,255,0.65); max-width: 640px; margin: 0 auto 12px; line-height: 1.65; }
+  .hero-note { font-size: 13px; color: rgba(255,255,255,0.32); margin-bottom: 44px; font-style: italic; }
+  .hero-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+  .btn-primary { display: inline-block; padding: 20px 52px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--black); font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; border-radius: 12px; text-decoration: none; letter-spacing: 0.01em; box-shadow: 0 8px 36px rgba(232,184,75,0.38); transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 48px rgba(232,184,75,0.52); }
+  .btn-note { font-size: 13px; color: rgba(255,255,255,0.38); }
+  .btn-note strong { color: rgba(255,255,255,0.6); }
+
+  .proof-bar { background: var(--dark-gray); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 22px 20px; display: flex; justify-content: center; gap: 52px; flex-wrap: wrap; }
+  .proof-item { text-align: center; }
+  .proof-item .num { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1; }
+  .proof-item .label { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 5px; }
+
+  .section { padding: 88px 20px; }
+  .section-inner { max-width: 800px; margin: 0 auto; }
+  .section-inner.wide { max-width: 1040px; }
+  .section-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+  .section-title { font-family: 'Outfit', sans-serif; font-size: clamp(26px, 4vw, 44px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; color: var(--white); }
+  .section-title em { font-style: normal; color: var(--gold); }
+  .section-body { font-size: 17px; color: rgba(255,255,255,0.62); line-height: 1.75; margin-bottom: 18px; }
+
+  .problem-section { background: var(--dark-gray); padding: 88px 20px; }
+  .pain-list { display: flex; flex-direction: column; gap: 12px; margin-top: 36px; }
+  .pain-item { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; color: rgba(255,255,255,0.72); padding: 18px 20px; background: rgba(255,255,255,0.03); border-radius: 10px; border-left: 3px solid rgba(232,75,75,0.4); line-height: 1.5; }
+  .pain-item .x { color: #e05c5c; font-size: 16px; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+
+  .cash-section { background: var(--black); padding: 88px 20px; }
+  .cash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 44px; }
+  .cash-card { background: var(--mid-gray); border-radius: 16px; padding: 28px 24px; border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+  .cash-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-dark)); }
+  .cash-card:hover { border-color: rgba(232,184,75,0.25); transform: translateY(-3px); }
+  .cash-letter { font-family: 'Outfit', sans-serif; font-size: 52px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 12px; }
+  .cash-title { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .cash-desc { font-size: 14px; color: rgba(255,255,255,0.52); line-height: 1.6; }
+
+  .inside-section { background: var(--dark-gray); padding: 88px 20px; }
+  .inside-list { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+  .inside-item { display: flex; align-items: flex-start; gap: 16px; padding: 22px 24px; background: var(--mid-gray); border-radius: 12px; border-left: 4px solid var(--gold); }
+  .inside-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .inside-text h3 { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+  .inside-text p { font-size: 14px; color: rgba(255,255,255,0.52); line-height: 1.55; }
+
+  .bonuses-section { background: var(--black); padding: 88px 20px; }
+  .bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
+  .bonus-card { background: var(--mid-gray); border-radius: 14px; padding: 26px 22px; border: 1px solid rgba(232,184,75,0.12); position: relative; }
+  .bonus-free { position: absolute; top: 16px; right: 16px; background: var(--gold); color: var(--black); font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 100px; }
+  .bonus-num { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+  .bonus-title { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; padding-right: 40px; }
+  .bonus-desc { font-size: 14px; color: rgba(255,255,255,0.52); line-height: 1.55; }
+
+  .forwho-section { background: var(--dark-gray); padding: 88px 20px; }
+  .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 36px; }
+  @media (max-width: 540px) { .check-list { grid-template-columns: 1fr; } }
+  .check-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255,255,255,0.8); padding: 14px 16px; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
+  .check-dot { width: 22px; height: 22px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--black); font-weight: 800; flex-shrink: 0; }
+
+  .guarantee-section { background: var(--black); padding: 88px 20px; }
+  .guarantee-card { max-width: 680px; margin: 0 auto; background: var(--mid-gray); border-radius: 20px; padding: 48px 40px; border: 1px solid rgba(232,184,75,0.2); text-align: center; position: relative; overflow: hidden; }
+  .guarantee-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-dark)); }
+  .guarantee-icon { font-size: 52px; margin-bottom: 20px; }
+  .guarantee-title { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 16px; }
+  .guarantee-body { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  .guarantee-body strong { color: var(--gold); }
+
+  .steps-section { background: var(--dark-gray); padding: 88px 20px; }
+  .steps-list { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .step-item { display: flex; align-items: flex-start; gap: 20px; padding: 24px; background: var(--mid-gray); border-radius: 14px; border: 1px solid rgba(255,255,255,0.06); }
+  .step-num { font-family: 'Outfit', sans-serif; font-size: 36px; font-weight: 900; color: var(--gold); line-height: 1; flex-shrink: 0; min-width: 40px; }
+  .step-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .step-text p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  .pricing-section { background: var(--black); padding: 88px 20px; text-align: center; }
+  .price-card { max-width: 540px; margin: 44px auto 0; background: var(--dark-gray); border-radius: 20px; padding: 52px 44px; border: 1px solid rgba(232,184,75,0.22); box-shadow: 0 0 100px rgba(232,184,75,0.07); position: relative; overflow: hidden; }
+  .price-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-dark)); }
+  .price-badge { display: inline-block; background: rgba(232,184,75,0.1); border: 1px solid rgba(232,184,75,0.28); color: var(--gold); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; }
+  .price-amount { font-family: 'Outfit', sans-serif; font-size: 80px; font-weight: 900; color: var(--white); line-height: 1; letter-spacing: -0.04em; }
+  .price-amount sup { font-size: 36px; vertical-align: super; color: var(--gold); }
+  .price-period { font-size: 15px; color: rgba(255,255,255,0.4); margin-bottom: 32px; margin-top: 8px; }
+  .price-includes { text-align: left; display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+  .price-include-item { display: flex; align-items: center; gap: 10px; font-size: 15px; color: rgba(255,255,255,0.78); }
+  .price-include-item::before { content: '✓'; width: 20px; height: 20px; background: rgba(232,184,75,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gold); font-weight: 800; flex-shrink: 0; }
+  .price-security { margin-top: 18px; font-size: 13px; color: rgba(255,255,255,0.35); display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+  .faq-section { background: var(--dark-gray); padding: 88px 20px; }
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 40px; }
+  .faq-item { background: var(--mid-gray); border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; }
+  .faq-q { padding: 20px 24px; font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: var(--white); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; user-select: none; transition: color 0.2s; }
+  .faq-q:hover { color: var(--gold); }
+  .faq-icon { color: var(--gold); font-size: 22px; flex-shrink: 0; transition: transform 0.2s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a { display: none; padding: 16px 24px 22px; font-size: 15px; color: rgba(255,255,255,0.58); line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); }
+  .faq-item.open .faq-a { display: block; }
+
+  .final-cta { background: var(--black); padding: 108px 20px; text-align: center; position: relative; overflow: hidden; }
+  .final-cta::before { content: ''; position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(232,184,75,0.09) 0%, transparent 65%); pointer-events: none; }
+
+  footer { background: var(--dark-gray); border-top: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.32); text-align: center; padding: 36px 20px; font-size: 12px; line-height: 1.9; }
+  footer a { color: rgba(255,255,255,0.42); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-inner > * { animation: fadeUp 0.7s ease both; }
+  .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-inner > *:nth-child(3) { animation-delay: 0.22s; }
+  .hero-inner > *:nth-child(4) { animation-delay: 0.30s; }
+  .hero-inner > *:nth-child(5) { animation-delay: 0.38s; }
+
+  @media (max-width: 600px) {
+    .proof-bar { gap: 24px; }
+    .price-card { padding: 36px 22px; }
+    .price-amount { font-size: 60px; }
+    .btn-primary { padding: 18px 28px; font-size: 16px; }
+    .guarantee-card { padding: 36px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">🔥 Special Offer — Get the Full Insta Profit System for Just $47 one-time</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">The Insta Profit System</div>
+    <h1>Turn Instagram Into a<br><em>Daily Sales Machine</em> —<br>Without Showing Your Face</h1>
+    <p class="hero-sub">A complete beginner-friendly system that shows you exactly how to sell digital products on Instagram using faceless content and done-for-you automation — zero followers, zero ad spend, zero experience required.</p>
+    <p class="hero-note">Simple Digital Systems is a licensed independent reseller of the Insta Profit System.</p>
+    <div class="hero-cta-wrap">
+      <a href="https://simpledigitalsystems.systeme.io/order" class="btn-primary">Get Instant Access — $47 one-time →</a>
+      <p class="btn-note">🔒 Secure checkout &nbsp;·&nbsp; <strong>Cancel anytime</strong> &nbsp;·&nbsp; Instant access</p>
+    </div>
+  </div>
+</section>
+
+<div class="proof-bar">
+  <div class="proof-item"><div class="num">$47</div><div class="label">Per Month</div></div>
+  <div class="proof-item"><div class="num">0</div><div class="label">Followers Needed</div></div>
+  <div class="proof-item"><div class="num">100%</div><div class="label">Faceless System</div></div>
+  <div class="proof-item"><div class="num">$0</div><div class="label">Ad Spend Required</div></div>
+  <div class="proof-item"><div class="num">14</div><div class="label">Day Guarantee</div></div>
+</div>
+
+<section class="problem-section">
+  <div class="section-inner">
+    <span class="section-tag">Sound familiar?</span>
+    <h2 class="section-title">You want to make money online.<br>But nothing has clicked yet.</h2>
+    <div class="pain-list">
+      <div class="pain-item"><span class="x">✗</span> You've watched hours of YouTube but still don't know where to actually start</div>
+      <div class="pain-item"><span class="x">✗</span> You post on Instagram but get zero engagement and zero sales</div>
+      <div class="pain-item"><span class="x">✗</span> You don't want to be on camera or build a personal brand from scratch</div>
+      <div class="pain-item"><span class="x">✗</span> You don't have money to risk on paid ads that might not work</div>
+      <div class="pain-item"><span class="x">✗</span> You've tried other methods — dropshipping, affiliate marketing — nothing stuck</div>
+      <div class="pain-item"><span class="x">✗</span> You just need a clear, simple system that works for beginners starting from zero</div>
+    </div>
+  </div>
+</section>
+
+<section class="cash-section">
+  <div class="section-inner wide">
+    <span class="section-tag">The system</span>
+    <h2 class="section-title">The <em>C.A.S.H. Framework</em> —<br>Your Instagram turned into a sales machine</h2>
+    <p class="section-body" style="max-width:640px;">The Insta Profit System is built around the C.A.S.H. Framework — a four-part system that converts casual Instagram scrollers into digital product buyers, on autopilot.</p>
+    <div class="cash-grid">
+      <div class="cash-card"><div class="cash-letter">C</div><div class="cash-title">Content That Converts</div><div class="cash-desc">Create faceless posts that pre-sell your offer and turn viewers into leads — without complex sales tactics or showing your face.</div></div>
+      <div class="cash-card"><div class="cash-letter">A</div><div class="cash-title">Automation</div><div class="cash-desc">Set up a done-for-you ManyChat system that converts comments and DMs into customers automatically — 24/7, even while you sleep.</div></div>
+      <div class="cash-card"><div class="cash-letter">S</div><div class="cash-title">Simple Digital Products</div><div class="cash-desc">Offer low-effort, high-margin digital products that solve problems people are already searching for — no inventory, no shipping.</div></div>
+      <div class="cash-card"><div class="cash-letter">H</div><div class="cash-title">High-Value Offers</div><div class="cash-desc">Package your products into irresistible offers that over-deliver, build trust, and create buyers who come back again and again.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="inside-section">
+  <div class="section-inner">
+    <span class="section-tag">What's included</span>
+    <h2 class="section-title">Everything inside the<br><em>Insta Profit System:</em></h2>
+    <div class="inside-list">
+      <div class="inside-item"><div class="inside-icon">🎓</div><div class="inside-text"><h3>Step-by-Step Instagram Selling Tutorials</h3><p>Easy-to-follow video modules walking you through exactly how to turn your Instagram into a 24/7 sales machine — even starting from zero followers and zero experience.</p></div></div>
+      <div class="inside-item"><div class="inside-icon">⚙️</div><div class="inside-text"><h3>Done-For-You ManyChat Automation</h3><p>Pre-built Instagram DM automation flows you install directly into your account. No tech skills needed — just follow the setup steps and it runs on autopilot.</p></div></div>
+      <div class="inside-item"><div class="inside-icon">📦</div><div class="inside-text"><h3>Digital Product Creation Training</h3><p>Learn how to package knowledge into digital products that sell themselves — without needing to be an expert or "salesy" in any way.</p></div></div>
+      <div class="inside-item"><div class="inside-icon">🔄</div><div class="inside-text"><h3>Complete "Set It and Forget It" Sales Funnel</h3><p>A fully automated funnel walkthrough so leads flow in and sales go out — without you manually chasing anyone or being glued to your phone.</p></div></div>
+      <div class="inside-item"><div class="inside-icon">📜</div><div class="inside-text"><h3>Master Resell Rights (MRR) License</h3><p>Sell the entire Insta Profit System as your own product and keep 100% of the revenue. This is your business-in-a-box from day one.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="bonuses-section">
+  <div class="section-inner wide">
+    <span class="section-tag">Included free</span>
+    <h2 class="section-title">6 Exclusive Bonuses —<br><em>All Included at No Extra Cost</em></h2>
+    <div class="bonus-grid">
+      <div class="bonus-card"><div class="bonus-free">FREE</div><div class="bonus-num">Bonus 01</div><div class="bonus-title">Viral Video Hook Vault</div><div class="bonus-desc">100+ proven hooks that consistently drive engagement and stop the scroll — without spending a cent on ads.</div></div>
+      <div class="bonus-card"><div class="bonus-free">FREE</div><div class="bonus-num">Bonus 02</div><div class="bonus-title">Best Performing Product Ideas</div><div class="bonus-desc">An exclusive list of digital product ideas that consistently generate income with minimal effort — so you're never stuck on what to sell.</div></div>
+      <div class="bonus-card"><div class="bonus-free">FREE</div><div class="bonus-num">Bonus 03</div><div class="bonus-title">DFY Sales System</div><div class="bonus-desc">Import a done-for-you landing page, email swipes, and full sales system in one click — ready to use from day one.</div></div>
+      <div class="bonus-card"><div class="bonus-free">FREE</div><div class="bonus-num">Bonus 04</div><div class="bonus-title">Master Resell Rights License</div><div class="bonus-desc">Legally sell the entire Insta Profit System as your own product and keep 100% of every sale you make.</div></div>
+      <div class="bonus-card"><div class="bonus-free">FREE</div><div class="bonus-num">Bonus 05</div><div class="bonus-title">High-Converting Copy in Minutes</div><div class="bonus-desc">Learn how to write words that sell — even if you've never written a word of sales copy before in your life.</div></div>
+      <div class="bonus-card"><div class="bonus-free">FREE</div><div class="bonus-num">Bonus 06</div><div class="bonus-title">Ultimate 24-Hour Launch Checklist</div><div class="bonus-desc">A step-by-step roadmap to set up, launch, and start generating passive income fast — no fluff, no confusion, just action.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="forwho-section">
+  <div class="section-inner">
+    <span class="section-tag">Is this for you?</span>
+    <h2 class="section-title">This system is perfect for you if…</h2>
+    <div class="check-list">
+      <div class="check-item"><div class="check-dot">✓</div> You're brand new to digital products</div>
+      <div class="check-item"><div class="check-dot">✓</div> You don't want to show your face online</div>
+      <div class="check-item"><div class="check-dot">✓</div> You have zero Instagram followers right now</div>
+      <div class="check-item"><div class="check-dot">✓</div> You can't afford to run paid ads</div>
+      <div class="check-item"><div class="check-dot">✓</div> You want income that works passively</div>
+      <div class="check-item"><div class="check-dot">✓</div> You need a clear step-by-step system</div>
+      <div class="check-item"><div class="check-dot">✓</div> You're tired of watching others do it</div>
+      <div class="check-item"><div class="check-dot">✓</div> You're ready to actually take action</div>
+    </div>
+  </div>
+</section>
+
+<section class="guarantee-section">
+  <div class="section-inner">
+    <div class="guarantee-card">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-title">14-Day Money-Back Guarantee</div>
+      <p class="guarantee-body">Go through the Insta Profit System, implement what's taught, and if you don't feel you've received a single strategy you can use to start making money on Instagram — email us at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5d6d0d5d5cad7d1e5d6ccc8d5c9c0c1ccc2ccd1c4c9d6dcd6d1c0c8d68bc6cac8">[email&#160;protected]</a></strong> within <strong>14 days</strong> and you'll receive a full refund. No questions asked.</p>
+    </div>
+  </div>
+</section>
+
+<section class="steps-section">
+  <div class="section-inner">
+    <span class="section-tag">How it works</span>
+    <h2 class="section-title">Three steps to your<br>first digital sale:</h2>
+    <div class="steps-list">
+      <div class="step-item"><div class="step-num">1</div><div class="step-text"><h3>Get the Insta Profit System</h3><p>Get instant access to the full C.A.S.H. Framework, all modules, the automation system, and all 6 bonuses — everything you need to start.</p></div></div>
+      <div class="step-item"><div class="step-num">2</div><div class="step-text"><h3>Implement the C.A.S.H. Framework</h3><p>Follow the step-by-step process to set up your faceless content, install your ManyChat automation, and get your sales system live.</p></div></div>
+      <div class="step-item"><div class="step-num">3</div><div class="step-text"><h3>Start Collecting Daily Sales</h3><p>Watch your Instagram transform into a consistent income stream — with the automation handling leads and follow-ups while you focus on content.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="section-inner">
+    <span class="section-tag">Simple pricing</span>
+    <h2 class="section-title">One price.<br><em>Everything included.</em></h2>
+    <div class="price-card">
+      <div class="price-badge">One-Time Payment</div>
+      <div class="price-amount"><sup>$</sup>47</div>
+      <div class="price-period">one-time payment</div>
+      <div class="price-includes">
+        <div class="price-include-item">Full Insta Profit System course access</div>
+        <div class="price-include-item">Done-for-you ManyChat automation</div>
+        <div class="price-include-item">Digital product creation training</div>
+        <div class="price-include-item">Complete automated sales funnel</div>
+        <div class="price-include-item">Master Resell Rights (MRR) license</div>
+        <div class="price-include-item">All 6 exclusive bonuses — free</div>
+        <div class="price-include-item">14-day money-back guarantee</div>
+        <div class="price-include-item">Instant access — start today</div>
+      </div>
+      <a href="https://simpledigitalsystems.systeme.io/order" class="btn-primary" style="display:block; text-align:center;">Get Instant Access — $47 one-time →</a>
+      <p class="price-security">🔒 Secure checkout &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; Instant access</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="section-inner">
+    <span class="section-tag">Got questions?</span>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Do I need followers to start? <span class="faq-icon">+</span></div><div class="faq-a">No — the system is specifically designed for people starting from zero. The content strategy and ManyChat automation do the heavy lifting regardless of your follower count.</div></div>
+      <div class="faq-item"><div class="faq-q">Do I have to show my face on camera? <span class="faq-icon">+</span></div><div class="faq-a">Not at all. The entire system is built around faceless content — screen recordings, carousels, voiceovers, and templates. You never need to appear on camera.</div></div>
+      <div class="faq-item"><div class="faq-q">Is this a one-time fee or monthly? <span class="faq-icon">+</span></div><div class="faq-a">The Insta Profit System is a one-time payment of $47. You pay once and get lifetime access — no subscriptions, no recurring charges.</div></div>
+      <div class="faq-item"><div class="faq-q">Do I need to spend money on ads? <span class="faq-icon">+</span></div><div class="faq-a">No paid ads required. The system uses organic Instagram content and automation to generate leads and sales — your only cost is the monthly membership.</div></div>
+      <div class="faq-item"><div class="faq-q">What are Master Resell Rights? <span class="faq-icon">+</span></div><div class="faq-a">MRR means you can legally resell the Insta Profit System as your own product and keep 100% of the revenue from every sale you make. It's a business-in-a-box from day one.</div></div>
+      <div class="faq-item"><div class="faq-q">What is ManyChat and do I need to pay for it? <span class="faq-icon">+</span></div><div class="faq-a">ManyChat is an Instagram DM automation tool that automatically responds to comments and messages on your behalf. It has a free plan that covers everything you need to get started.</div></div>
+      <div class="faq-item"><div class="faq-q">How quickly can I expect to see results? <span class="faq-icon">+</span></div><div class="faq-a">Results vary based on consistency and effort. Like any business, results require action. This is not a get-rich-quick scheme — it's a real system that takes real work to set up and run consistently.</div></div>
+      <div class="faq-item"><div class="faq-q">Will this work in my niche? <span class="faq-icon">+</span></div><div class="faq-a">The system is designed to work across a wide range of niches. If there are digital products that solve problems in your space, the C.A.S.H. Framework can be applied.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="section-inner" style="text-align:center; position:relative; z-index:2;">
+    <span class="section-tag" style="display:block;">Ready to start?</span>
+    <h2 class="section-title">Your first digital sale<br>starts with one decision.</h2>
+    <p class="section-body" style="max-width:500px; margin:0 auto 40px;">For just $47 you get the complete system, the done-for-you automation, all 6 bonuses, and everything you need to start making digital sales on Instagram — without showing your face or spending a cent on ads.</p>
+    <a href="https://simpledigitalsystems.systeme.io/order" class="btn-primary">Get Instant Access — $47 one-time →</a>
+    <p class="btn-note" style="margin-top:14px;">🔒 Secure checkout &nbsp;·&nbsp; <strong>Cancel anytime</strong> &nbsp;·&nbsp; 14-day guarantee</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Simple Digital Systems &nbsp;·&nbsp;
+    <a href="https://www.simpledigitalsystems.com/95f4fc7b/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="https://www.simpledigitalsystems.com/95f4fc7b/terms">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="https://www.simpledigitalsystems.com/95f4fc7b/refunds">Refund Policy</a>
+  </p>
+  <p style="margin-top:6px;">Contact: <a href="/cdn-cgi/l/email-protection#80f3f5f0f0eff2f4c0f3e9edf0ece5e4e9e7e9f4e1ecf3f9f3f4e5edf3aee3efed"><span class="__cf_email__" data-cfemail="4e3d3b3e3e213c3a0e3d27233e222b2a2729273a2f223d373d3a2b233d602d2123">[email&#160;protected]</span></a></p>
+  <p style="margin-top:10px; max-width:600px; margin-left:auto; margin-right:auto;">Simple Digital Systems is an independent licensed reseller of the Insta Profit System. Results are not guaranteed and will vary based on individual effort, experience, and market conditions. This is not a get-rich-quick program. This site is not affiliated with Instagram or Meta.</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare
